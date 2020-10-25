@@ -1,0 +1,38 @@
+body {
+    background: #cccccc;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+h4, h2 {
+    font-family: Helvetica,Arial,AppleGothic,sans-serif; 
+}
+
+body {
+    font-family: sans-serif;
+}
+
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: #900000;
+}
+
+a:visited {
+    color: #900000;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
+}
