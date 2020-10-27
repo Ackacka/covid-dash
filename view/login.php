@@ -1,38 +1,36 @@
-<?php 
-?>
-
 <!DOCTYPE html>
 
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title>COVID Dashboard - Log In/Registration</title>
-        <link rel="stylesheet" type="text/css" href="main.css"/>
+        <?php include_once('headPage.php'); ?>
+        <link rel="stylesheet" type="text/css" href="css/login.css"/>
     </head>
     <body>
-        <h1>User Login</h1>
-        <form action="index.php" method="post">
-            <input type="hidden" name="action" value="userLogin">
-
-            <fieldset> 
-                <legend>User Login</legend>        
-
-                <label>Username:  </label>
-                <input type="text" name="username" value="<?php echo $username; ?>">
-                <span class="errorMsg"> <?php echo $usernameError ?></span> 
-                <br>
-
-                <label>Password: </label>
-                <input type="password" name="password">
-                <span class="errorMsg"> <?php echo $passwordError ?></span> 
-
-            </fieldset>
-            <br>
-            <input type="submit" value="Submit">
-            <br>
-
-        </form>
         
-        <p><a href="index.php?action=showAddUser">Register</a><br></p>
+        <div class="container">              
+<!--	<img src="images/login.jpg"/>-->
+            <h1 class="logo-badge"><span class="fa fa-user-circle"></span></h1>
+            <h1>Account Sign In</h1>
+		<form method="post" action="index.php">
+                    <input type="hidden" name="action" value="userLogin">
+			<div class="form-input ">                           
+                            <input class="rounded" type="text" name="username" value="<?php echo htmlspecialchars($username); ?>" placeholder="Enter Your User Name"/>  
+                            <span style="color: red;"> <?php echo htmlspecialchars($usernameError) ?></span>
+                            <br>
+			</div>
+                    
+			<div class="form-input">
+				<input class="rounded" type="password" name="password" placeholder="Enter Your Password"/> 
+                                <span style="color: red;"> <?php echo htmlspecialchars($passwordError) ?></span>
+                                <br>
+			</div>
+                    <br>
+                    
+		<input type="submit" type="submit" value="LOGIN" class="btn-login"/>                       
+		</form>
+                <br>
+                <p>Do not have an account?</p>
+                <p><a href="index.php?action=showAddUser">Register</a><br></p>
+	</div>
     </body>
 </html>

@@ -11,10 +11,12 @@ if (session_id() == '') {
 require_once './model/database.php';
 require_once './model/user.php';
 require_once './model/userDB.php';
+require_once './model/validation.php';
 
-if (empty($_SESSION['loginUser'])) {
-    $_SESSION['loginUser'] = "defaultUser";
+if(!isset($_SESSION['loginUser'])) {
+ $_SESSION['loginUser'] = "defaultUser";   
 }
+
 
 $action = filter_input(INPUT_POST, "action");
 if ($action === null) {
@@ -30,6 +32,10 @@ switch ($action) {
         die();
         break;
     case "loginPage":
+        if(!isset($usernameError)){$usernameError = '';}
+        if(!isset($passwordError)){$passwordError = '';}
+        if(!isset($username)){$username = '';}
+        if(!isset($password)) {$password = '';}
         include 'view/login.php';
         die();
         break;
@@ -69,120 +75,106 @@ switch ($action) {
         die();
         break;
     case "showAddUser":
-        if (!isset($username)) {
-            $username = '';
+        if (!isset($firstName)) {
+            $firstName = '';
+        }
+        if (!isset($lastName)) {
+            $lastName = '';
         }
         if (!isset($email)) {
             $email = '';
         }
+        if (!isset($username)) {
+            $username = '';
+        }
         if (!isset($password)) {
             $password = '';
         }
-        if (!isset($usernameError)) {
-            $usernameError = '';
+        if (!isset($city)) {
+            $city = '';
+        }
+        if (!isset($state)) {
+            $state = '';
+        }
+        if (!isset($zipcode)) {
+            $zipcode = '';
+        }
+        
+        if (!isset($firstNameError)) {
+            $firstNameError = '';
+        }
+        if (!isset($lastNameError)) {
+            $lastNameError = '';
         }
         if (!isset($emailError)) {
             $emailError = '';
         }
+        if (!isset($usernameError)) {
+            $usernameError = '';
+        }
         if (!isset($passwordError)) {
             $passwordError = '';
         }
-        if (!isset($pwdCapital)) {
-            $pwdCapital = '';
+        if (!isset($cityError)) {
+            $cityError = '';
         }
-        if (!isset($pwdLower)) {
-            $pwdLower = '';
+        if (!isset($stateError)) {
+            $stateError = '';
         }
-        if (!isset($pwdNum)) {
-            $pwdNum = '';
-        }
-        if (!isset($pwdNonword)) {
-            $pwdNonword = '';
+        if (!isset($zipcodeError)) {
+            $zipcodeError = '';
         }
         include 'view/addUser.php';
         die();
         break;
     case "addUser":
-        $username = filter_input(INPUT_POST, 'username');
-        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $firstName = filter_input(INPUT_POST, 'firstName');
+        $lastName = filter_input(INPUT_POST, 'lastName');
+        $email = filter_input(INPUT_POST, 'email');    
+        $city = filter_input(INPUT_POST, 'city');
+        $state = filter_input(INPUT_POST, 'state');
+        $zipcode = filter_input(INPUT_POST, 'zipcode');
+        $username = filter_input(INPUT_POST, 'username');        
         $password = filter_input(INPUT_POST, 'password');
-        $_SESSION['loginUser'] = $username;
-
-        $usernameError = '';
-        if ($username == '') { // || strlen(trim($userName) <= 0))
-            $usernameError = 'Username is required.';
-        } else if (strlen($username) < 4 || strlen($username) > 30) {
-            $usernameError = 'Username must be between 4 and 30 characters';
-        } else if (!preg_match('/^[A-Za-z]/', $username)) {
-            $usernameError = 'Username must start with a letter';
-        } else if (!UserDB::uniqueUsernameTest($username) === false) {
+        $userType = filter_input(INPUT_POST, 'userType');
+                    
+        $firstNameError = Validation::validNameComplete($firstName, 'First Name');
+        $lastNameError = Validation::validNameComplete($lastName, 'Last Name');
+        $emailError = Validation::validEmail($email, 'Email');
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailError = "The email ".$email." is not a valid email.";
+        } 
+        if (!UserDB::uniqueEmailTest($email) === false) {
+                $emailError = 'Email already in use.';
+        }        
+        $cityError = Validation::validCity($city, 'City');
+        $stateError = Validation::isNotEmpty($state, 'State');
+        $zipcodeError = Validation::validZipcode($zipcode, 'Zipcode');
+        $usernameError = Validation::validUsernameComplete($username, 'Username');
+        if($username == "") {
+            if (UserDB::uniqueUsernameTest($username) === false) {
             $usernameError = 'Username already taken.';
-        } else {
-            $usernameError = '';
-        }
-
-        $emailError = '';
-        if ($email == '') { //|| strlen(trim($email) <= 0))
-            $emailError = 'Must be a valid email.';
-        } else if (!UserDB::uniqueEmailTest($email) === false) {
-            $emailError = 'Email already in use.';
-        }
-
-        $pwdCapital = "Must have a capital letter";
-        $pwdLower = "Must have a lower case letter";
-        $pwdNum = "Must include a number";
-        $pwdNonword = "Must have a special character";
-        $pwdLength = "Must be at least 12 characters long";
-        $counter = 0;
-        $password_valid = true;
-
-        if (preg_match('/[A-Z+]/', $password)) {
-            $counter += 1;
-            $pwdCapital = "";
-        }
-        if (preg_match('/[a-z+]/', $password)) {
-            $counter += 1;
-            $pwdLower = "";
-        }
-        if (preg_match('/[0-9+]/', $password)) {
-            $counter += 1;
-            $pwdNum = "";
-        }
-        if (preg_match('/[\W+]/', $password)) {
-            $counter += 1;
-            $pwdNonword = "";
-        }
-        if ($counter < 3) {
-            $passwordError = "Must meet at least 3 of the 4 requirements";
-            $password_valid = false;
-        } else {
-            $pwdCapital = "";
-            $pwdLower = "";
-            $pwdNum = "";
-            $pwdNonword = "";
-            $passwordError = "";
-            $password_valid = true;
-        }
-        if (strlen($password) < 12) {
-            $passwordError = $pwdLength;
-            $password_valid = false;
-        } else {
-            $password_valid = true;
-        }
-
-        if ($password_valid) {
-            $pwdHash = password_hash($password, PASSWORD_BCRYPT);
-        }
-
-
+            }
+        }       
+        $passwordError = Validation::validPasswordComplete($password, 'Password');
+        $pwdHash = password_hash($password, PASSWORD_BCRYPT);         
+         
         //write user information to database
         if ($usernameError !== '' || $emailError !== '' || $passwordError !== '') {
             include("./view/addUser.php");
             die();
         } else {
-            $user = new User($username, $email, $pwdHash);
-            UserDB::addUser($user);
-            include("./view/confirmation.php");
+            if(empty($_POST["admin"])) {
+                $roleTypeID = 1;
+                $user = new User($firstName, $lastName, $email, $city, $state, $zipcode, $username, $pwdHash, $roleTypeID);
+                $userID = UserDB::addUser($user);
+            } else {
+                $roleTypeID = 2;
+                $user = new User($firstName, $lastName, $email, $city, $state, $zipcode, $username, $pwdHash, $roleTypeID);
+                $userID = UserDB::addUser($user);
+            }
+            $_SESSION['loginUser'] = $username;            
+            include("./view/login.php");
             die();
         }
         break;
