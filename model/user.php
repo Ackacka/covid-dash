@@ -1,45 +1,80 @@
 <?php
 
 class User {
-    private $userID, $username, $password, $email;
+    private $userID, $username, $password, $email, $roleTypeID, $city, $state, $zip;
     
-    public function __construct($username, $email, $password){
+    function __construct($username, $password, $email, $city, $state, $zip) {
         $this->username = $username;
-        $this->email = $email;
         $this->password = $password;
-    }    
-       
-    public function getUserID() {
+        $this->email = $email;
+        $this->city = $city;
+        $this->state = $state;
+        $this->zip = $zip;
+        $this->roleTypeID = 1;
+    }
+
+    function getUserID() {
         return $this->userID;
     }
 
-    public function getUsername() {
+    function getUsername() {
         return $this->username;
     }
 
-    public function getPassword() {
+    function getPassword() {
         return $this->password;
     }
 
-    public function getEmail() {
+    function getEmail() {
         return $this->email;
     }
 
-    public function setUserID($userID) {
-        $this->userID = $userID;
-    }    
+    function getCity() {
+        return $this->city;
+    }
 
-    public function setUsername($username) {
+    function getState() {
+        return $this->state;
+    }
+
+    function getZip() {
+        return $this->zip;
+    }
+
+    function setUserID($userID): void {
+        $this->userID = $userID;
+    }
+
+    function setUsername($username): void {
         $this->username = $username;
     }
 
-    public function setPassword($password) {
+    function setPassword($password): void {
         $this->password = $password;
     }
 
-    public function setEmail($email) {
+    function setEmail($email): void {
         $this->email = $email;
-    }    
+    }
+
+    function setCity($city): void {
+        $this->city = $city;
+    }
+
+    function setState($state): void {
+        $this->state = $state;
+    }
+
+    function setZip($zip): void {
+        $this->zip = $zip;
+    }
+
+    function getRoleTypeID() {
+        return $this->roleTypeID;
+    }
+
+
+
     
 }
 

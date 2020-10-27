@@ -78,17 +78,30 @@ class UserDB {
         $username = $user->getUsername();
         $email = $user->getEmail();
         $password = $user->getPassword();
+        $firstName = $user->getFirstName();
+        $lastName = $user->getLastName();
+        $roleTypeID = $user->getRoleTypeID();
+        $city = $user->getCity();
+        $state = $user->getState();
+        $zip = $user ->getZip();
 
         try {
             // Add the user to the database  
             $query = 'INSERT INTO users
-                     (username, email, password)
+                     (username, email, password, firstName, lastName, roleTypeID, city, state, zip)
                   VALUES
-                     (:username, :email,:password)';
+                     (:username, :email,:password, :firstName, :lastName, :roleTypeID, :city, :state, :zip)';
             $statement = $db->prepare($query);
             $statement->bindValue(':username', $username);
             $statement->bindValue(':email', $email);
             $statement->bindValue(':password', $password);
+            $statement->bindValue(':firstName', $firstName);
+            $statement->bindValue(':lastName', $lastName);
+            $statement->bindValue(':roleTypeID', $roleTypeID);
+            $statement->bindValue(':city', $city);
+            $statement->bindValue(':state', $state);
+            $statement->bindValue(':zip', $zip);
+            
             $statement->execute();
             $statement->closeCursor();
         } catch (PDOException $e) {
