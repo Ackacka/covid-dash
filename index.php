@@ -55,7 +55,7 @@ switch ($action) {
         }
         curl_close($curl);
         
-        include 'view/mainPage.php';
+        include 'dashboard/dashboard_mainPage.php';
         die();
         break;
     case "loginPage":
@@ -63,7 +63,7 @@ switch ($action) {
         if(!isset($passwordError)){$passwordError = '';}
         if(!isset($username)){$username = '';}
         if(!isset($password)) {$password = '';}
-        include 'view/login.php';
+        include 'account/account_login.php';
         die();
         break;
     case "userLogin":
@@ -77,7 +77,7 @@ switch ($action) {
             $_SESSION['loginUser'] = $username;
             $user = UserDB::getUserByUsername($username);
             
-            include './view/mainPage.php';
+            include './dashboard/dashboard_mainPage.php';
             die();
             break;
             //more stuff if successful password match
@@ -98,7 +98,7 @@ switch ($action) {
             $password = '';
         }
 
-        include './view/login.php';
+        include './account/account_login.php';
         die();
         break;
     case "showAddUser":
@@ -151,7 +151,7 @@ switch ($action) {
         if (!isset($zipcodeError)) {
             $zipcodeError = '';
         }
-        include 'view/addUser.php';
+        include 'account/account_register.php';
         die();
         break;
     case "addUser":
@@ -188,7 +188,7 @@ switch ($action) {
          
         //write user information to database
         if ($usernameError !== '' || $emailError !== '' || $passwordError !== '') {
-            include("./view/addUser.php");
+            include("./account/account_register.php");
             die();
         } else {
             if(empty($_POST["admin"])) {
@@ -201,13 +201,13 @@ switch ($action) {
                 $userID = UserDB::addUser($user);
             }
             $_SESSION['loginUser'] = $username;            
-            include("./view/login.php");
+            include("./account/account_login.php");
             die();
         }
         break;
     case "logOut":
         $_SESSION['loginUser'] = 'defaultUser';
-        include "./view/mainPage.php";
+        include "./dashboard/dashboard_mainPage.php";
         die();
         break;
 }

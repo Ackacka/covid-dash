@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title>COVID Dashboard</title>
-        <link rel="stylesheet" type="text/css" href="main.css"/>
+        <link rel="stylesheet" type="text/css" href="css/main.css"/>
     </head>
     <body>
         <h2>COVID Dashboard</h2>        

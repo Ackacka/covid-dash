@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include_once('headPage.php'); ?>
+        <?php include_once('dashboard/dashboard_headPage.php'); ?>
         <link rel="stylesheet" type="text/css" href="css/addUser.css"/>
     </head>
     <body>
