@@ -116,9 +116,11 @@ public function validUsernameComplete($arg, $label) {
     public function validZipcode ($arg, $label) {
         $filtArg = filter_var($arg, FILTER_VALIDATE_INT);
         if ($arg === null || $arg === "") {
-            return $label . ' must not be empty' . "\n";            
+            return $label . ' must not be empty' . "\n"; 
         } else if ($filtArg === null || $filtArg === false) {
             return $label . ' must a valid integer' . "\n";
+        } else if (!(strlen($arg) === 5)) {
+            return $label . ' must be 5 digits' . "\n";
         } else {
             return $label = '';
         }

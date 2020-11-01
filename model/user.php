@@ -1,77 +1,84 @@
 <?php
 
 class User {
-    private $userID, $username, $password, $email, $roleTypeID, $city, $state, $zip;
+    private $userID, $rolyTypeID, $firstName, $lastName, $email, $username, $password,  $city, $state, $zip;
     
-    function __construct($username, $password, $email, $city, $state, $zip) {
-        $this->username = $username;
-        $this->password = $password;
+    function __construct($rolyTypeID, $firstName, $lastName, $email, $username, $password, $city, $state, $zip) {
+        $this->rolyTypeID = $rolyTypeID;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
         $this->email = $email;
+        $this->username = $username;
+        $this->password = $password;  
         $this->city = $city;
         $this->state = $state;
         $this->zip = $zip;
-        $this->roleTypeID = 1;
+        
     }
 
-    function getUserID() {
+    public function getUserID() {
         return $this->userID;
     }
-
-    function getUsername() {
-        return $this->username;
+    public function getRoleTypeID() {
+        return $this->roleTypeID;
     }
-
-    function getPassword() {
-        return $this->password;
+    public function getFirstName() {
+        return $this->firstName;
     }
-
-    function getEmail() {
+    public function getLastName() {
+        return $this->lastName;
+    }
+    public function getEmail() {
         return $this->email;
     }
-
-    function getCity() {
+    public function getUsername() {
+        return $this->username;
+    }
+    public function getPassword() {
+        return $this->password;
+    }
+    public function getCity() {
         return $this->city;
     }
-
-    function getState() {
+    public function getState() {
         return $this->state;
     }
-
-    function getZip() {
+    public function getZip() {
         return $this->zip;
     }
 
     function setUserID($userID): void {
         $this->userID = $userID;
     }
-
-    function setUsername($username): void {
-        $this->username = $username;
+    function setRoleTypeID($roleTypeID): void {
+        $this->rolyTypeID = $roleTypeID;
     }
-
-    function setPassword($password): void {
-        $this->password = $password;
+    function setFirstName($firstName): void {
+        $this->firstName = $firstName;
     }
-
+    function setLastName($lastName): void {
+        $this->lastName = $lastName;
+    }
     function setEmail($email): void {
         $this->email = $email;
     }
-
+    function setUsername($username): void {
+        $this->username = $username;
+    }    
+    function setPassword($password): void {
+        $this->password = $password;
+    }
     function setCity($city): void {
         $this->city = $city;
     }
-
     function setState($state): void {
         $this->state = $state;
     }
-
     function setZip($zip): void {
         $this->zip = $zip;
     }
 
-    function getRoleTypeID() {
-        return $this->roleTypeID;
-    }
+    
 
 
 

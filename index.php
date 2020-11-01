@@ -163,27 +163,27 @@ switch ($action) {
         $zipcode = filter_input(INPUT_POST, 'zipcode');
         $username = filter_input(INPUT_POST, 'username');        
         $password = filter_input(INPUT_POST, 'password');
-        $userType = filter_input(INPUT_POST, 'userType');
+//        $userType = filter_input(INPUT_POST, 'userType');
                     
-        $firstNameError = Validation::validNameComplete($firstName, 'First Name');
-        $lastNameError = Validation::validNameComplete($lastName, 'Last Name');
-        $emailError = Validation::validEmail($email, 'Email');
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $emailError = "The email ".$email." is not a valid email.";
-        } 
-        if (!UserDB::uniqueEmailTest($email) === false) {
-                $emailError = 'Email already in use.';
-        }        
-        $cityError = Validation::validCity($city, 'City');
-        $stateError = Validation::isNotEmpty($state, 'State');
-        $zipcodeError = Validation::validZipcode($zipcode, 'Zipcode');
-        $usernameError = Validation::validUsernameComplete($username, 'Username');
-        if($username == "") {
-            if (UserDB::uniqueUsernameTest($username) === false) {
-            $usernameError = 'Username already taken.';
-            }
-        }       
-        $passwordError = Validation::validPasswordComplete($password, 'Password');
+//        $firstNameError = Validation::validNameComplete($firstName, 'First Name');
+//        $lastNameError = Validation::validNameComplete($lastName, 'Last Name');
+//        $emailError = Validation::validEmail($email, 'Email');
+//        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+//            $emailError = "The email ".$email." is not a valid email.";
+//        } 
+//        if (!UserDB::uniqueEmailTest($email) === false) {
+//                $emailError = 'Email already in use.';
+//        }        
+//        $cityError = Validation::validCity($city, 'City');
+//        $stateError = Validation::isNotEmpty($state, 'State');
+//        $zipcodeError = Validation::validZipcode($zipcode, 'Zipcode');
+//        $usernameError = Validation::validUsernameComplete($username, 'Username');
+//        if($username == "") {
+//            if (UserDB::uniqueUsernameTest($username) === false) {
+//            $usernameError = 'Username already taken.';
+//            }
+//        }       
+//        $passwordError = Validation::validPasswordComplete($password, 'Password');
         $pwdHash = password_hash($password, PASSWORD_BCRYPT);         
          
         //write user information to database
@@ -193,11 +193,11 @@ switch ($action) {
         } else {
             if(empty($_POST["admin"])) {
                 $roleTypeID = 1;
-                $user = new User($firstName, $lastName, $email, $city, $state, $zipcode, $username, $pwdHash, $roleTypeID);
+                $user = new User($roleTypeID, $firstName, $lastName, $email, $username, $pwdHash, $city, $state, $zipcode);
                 $userID = UserDB::addUser($user);
             } else {
                 $roleTypeID = 2;
-                $user = new User($firstName, $lastName, $email, $city, $state, $zipcode, $username, $pwdHash, $roleTypeID);
+                $user = new User($roleTypeID, $firstName, $lastName, $email, $username, $pwdHash, $city, $state, $zipcode);
                 $userID = UserDB::addUser($user);
             }
             $_SESSION['loginUser'] = $username;            

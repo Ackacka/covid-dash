@@ -88,16 +88,16 @@ class UserDB {
         try {
             // Add the user to the database  
             $query = 'INSERT INTO users
-                     (username, email, password, firstName, lastName, roleTypeID, city, state, zip)
+                     (roleTypeID, firstName, lastName, email, username, password, city, state, zip)
                   VALUES
-                     (:username, :email,:password, :firstName, :lastName, :roleTypeID, :city, :state, :zip)';
+                     (:roleTypeID, :firstName, :lastName, :email, :username, :password, :city, :state, :zip)';
             $statement = $db->prepare($query);
-            $statement->bindValue(':username', $username);
-            $statement->bindValue(':email', $email);
-            $statement->bindValue(':password', $password);
+            $statement->bindValue(':roleTypeID', $roleTypeID);
             $statement->bindValue(':firstName', $firstName);
             $statement->bindValue(':lastName', $lastName);
-            $statement->bindValue(':roleTypeID', $roleTypeID);
+            $statement->bindValue(':email', $email);
+            $statement->bindValue(':username', $username);            
+            $statement->bindValue(':password', $password);                      
             $statement->bindValue(':city', $city);
             $statement->bindValue(':state', $state);
             $statement->bindValue(':zip', $zip);
