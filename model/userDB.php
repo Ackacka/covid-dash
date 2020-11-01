@@ -75,22 +75,22 @@ class UserDB {
     public static function addUser($user) {
         $db = Database::getDB();
 
-        $username = $user->getUsername();
-        $email = $user->getEmail();
-        $password = $user->getPassword();
+        $roleTypeID = $user->getRoleTypeID();
         $firstName = $user->getFirstName();
         $lastName = $user->getLastName();
-        $roleTypeID = $user->getRoleTypeID();
+        $email = $user->getEmail();
+        $username = $user->getUsername();
+        $password = $user->getPassword();
         $city = $user->getCity();
         $state = $user->getState();
-        $zip = $user ->getZip();
+        $zipcode = $user ->getZipcode();
 
         try {
             // Add the user to the database  
             $query = 'INSERT INTO users
-                     (roleTypeID, firstName, lastName, email, username, password, city, state, zip)
+                     (roleTypeID, firstName, lastName, email, username, password, city, state, zipcode)
                   VALUES
-                     (:roleTypeID, :firstName, :lastName, :email, :username, :password, :city, :state, :zip)';
+                     (:roleTypeID, :firstName, :lastName, :email, :username, :password, :city, :state, :zipcode)';
             $statement = $db->prepare($query);
             $statement->bindValue(':roleTypeID', $roleTypeID);
             $statement->bindValue(':firstName', $firstName);
@@ -100,10 +100,10 @@ class UserDB {
             $statement->bindValue(':password', $password);                      
             $statement->bindValue(':city', $city);
             $statement->bindValue(':state', $state);
-            $statement->bindValue(':zip', $zip);
-            
-            $statement->execute();
+            $statement->bindValue(':zipcode', $zipcode);
+//            $userID = $db->lastInsertId();
             $statement->closeCursor();
+//            return $userID;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             include("index.php");

@@ -1,10 +1,10 @@
 <?php
 
 class User {
-    private $userID, $rolyTypeID, $firstName, $lastName, $email, $username, $password,  $city, $state, $zip;
+    private $userID, $roleTypeID, $firstName, $lastName, $email, $username, $password,  $city, $state, $zipcode;
     
-    function __construct($rolyTypeID, $firstName, $lastName, $email, $username, $password, $city, $state, $zip) {
-        $this->rolyTypeID = $rolyTypeID;
+    function __construct($roleTypeID, $firstName, $lastName, $email, $username, $password, $city, $state, $zipcode) {
+        $this->roleTypeID = $roleTypeID;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
@@ -12,7 +12,7 @@ class User {
         $this->password = $password;  
         $this->city = $city;
         $this->state = $state;
-        $this->zip = $zip;
+        $this->zipcode = $zipcode;
         
     }
 
@@ -43,15 +43,15 @@ class User {
     public function getState() {
         return $this->state;
     }
-    public function getZip() {
-        return $this->zip;
+    public function getZipcode() {
+        return $this->zipcode;
     }
 
     function setUserID($userID): void {
         $this->userID = $userID;
     }
     function setRoleTypeID($roleTypeID): void {
-        $this->rolyTypeID = $roleTypeID;
+        $this->roleTypeID = $roleTypeID;
     }
     function setFirstName($firstName): void {
         $this->firstName = $firstName;
@@ -74,8 +74,8 @@ class User {
     function setState($state): void {
         $this->state = $state;
     }
-    function setZip($zip): void {
-        $this->zip = $zip;
+    function setZipcode($zipcode): void {
+        $this->zipcode = $zipcode;
     }
 
     
