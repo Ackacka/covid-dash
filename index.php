@@ -206,6 +206,7 @@ switch ($action) {
         }
         break;
     case "logOut":
+        session_destroy();
         $_SESSION['loginUser'] = 'defaultUser';
         include "./dashboard/dashboard_mainPage.php";
         die();
