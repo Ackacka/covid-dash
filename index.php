@@ -200,6 +200,7 @@ switch ($action) {
                 $user = new User($roleTypeID, $firstName, $lastName, $email, $username, $pwdHash, $city, $state, $zipcode);
                 UserDB::addUser($user);
             }
+            
             $_SESSION['loginUser'] = $username;            
             include("./account/account_login.php");
             die();

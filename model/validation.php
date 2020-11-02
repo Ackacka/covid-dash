@@ -94,10 +94,8 @@ public function validUsernameComplete($arg, $label) {
             return $label . ' must have a lower case letter' . "\n";
         } else if(!preg_match('/[0-9]+/', $arg)) {
             return $label . ' must include a number' . "\n";
-        } else if(!preg_match('/[\W]+/', $arg)) {
-            return $label . ' must have a special character' . "\n";
-        } else if(strlen($arg) < 12) {
-            return $label . ' must be at least 12 characters long' . "\n";
+        } else if(strlen($arg) < 8) {
+            return $label . ' must be at least 8 characters long' . "\n";
         } else {
             return $label = '';
         }
