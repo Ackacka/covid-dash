@@ -11,8 +11,8 @@
         
         <?php // var_dump($dResponse) ?>
         
-        <h4>Total Deaths: <?php echo $dResponse['death'] ?></h4>
-        <h4>Total number of positive cases: <?php echo $dResponse['positive'] ?></h4>
+        <h4>Total Deaths: <?php echo $dashInfo['death'] ?></h4>
+        <h4>Total number of positive cases: <?php echo $dashInfo['positive'] ?></h4>
         <a href="index.php?action=loginPage">Login/Register</a>
         <br>
         <br>

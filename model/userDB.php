@@ -101,7 +101,7 @@ class UserDB {
             $statement->bindValue(':city', $city);
             $statement->bindValue(':state', $state);
             $statement->bindValue(':zipcode', $zipcode);
-//            $userID = $db->lastInsertId();
+            $statement->execute();
             $statement->closeCursor();
 //            return $userID;
         } catch (PDOException $e) {
