@@ -111,6 +111,7 @@ public function validUsernameComplete($arg, $label) {
         }
     }
     
+    
     public function validZipcode ($arg, $label) {
         $filtArg = filter_var($arg, FILTER_VALIDATE_INT);
         if ($arg === null || $arg === "") {

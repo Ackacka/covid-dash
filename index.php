@@ -136,7 +136,7 @@ switch ($action) {
         $lastName = filter_input(INPUT_POST, 'lastName');
         $email = filter_input(INPUT_POST, 'email');    
         $city = filter_input(INPUT_POST, 'city');
-        $state = filter_input(INPUT_POST, 'state');
+        $state = $_POST['states'];
         $zipcode = filter_input(INPUT_POST, 'zipcode');
         $username = filter_input(INPUT_POST, 'username');        
         $password = filter_input(INPUT_POST, 'password');
