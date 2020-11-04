@@ -47,7 +47,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-4" for="state">State:</label>
                             <div class="col-sm-10">          
-                                <select name='states'>
+                                <select name='states'  class="form-control">
                                     <option selected="selected">Select A State</option>
                                     <?php
                                     // A sample product array
@@ -58,7 +58,7 @@
 
                                     // Iterating through the product array
                                     foreach ($states as $state) {
-                                        echo "<option value='strtolower($state)'>$state</option>";
+                                        echo "<option value='$state'>$state</option>";
                                     }
                                     ?>
                                 </select>

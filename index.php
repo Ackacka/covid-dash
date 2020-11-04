@@ -140,7 +140,6 @@ switch ($action) {
         $zipcode = filter_input(INPUT_POST, 'zipcode');
         $username = filter_input(INPUT_POST, 'username');        
         $password = filter_input(INPUT_POST, 'password');
-//        $userType = filter_input(INPUT_POST, 'userType');
                     
         $firstNameError = Validation::validNameComplete($firstName, 'First Name');
         $lastNameError = Validation::validNameComplete($lastName, 'Last Name');
