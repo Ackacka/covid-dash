@@ -9,7 +9,7 @@
     <body>
         <h2>COVID Dashboard</h2>        
         
-        <?php // var_dump($dResponse) ?>
+        <?php //  var_dump($stateDash) ?>
         
         <h4>Total Deaths: <?php echo $dashInfo['death'] ?></h4>
         <h4>Total number of positive cases: <?php echo $dashInfo['positive'] ?></h4>

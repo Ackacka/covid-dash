@@ -12,7 +12,7 @@ require_once './model/database.php';
 require_once './model/user.php';
 require_once './model/userDB.php';
 require_once './model/validation.php';
-require_once './model/tmdbRequests.php';
+require_once './model/covidApi.php';
 
 if(!isset($_SESSION['loginUser'])) {
  $_SESSION['loginUser'] = "defaultUser";   
@@ -30,7 +30,7 @@ if ($action === null) {
 switch ($action) {
     case "mainPage":
         
-        $dashInfo = tmdbRequests::getCurrent();
+        $dashInfo = covidApi::getCurrent();  
         
         include 'dashboard/dashboard_mainPage.php';
         die();
