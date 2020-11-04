@@ -118,8 +118,7 @@ public function validUsernameComplete($arg, $label) {
                                         "VT", "VA", "WA", "WV", "WI", "WY"  ))) {
             return $label = 'Select a valid state.' . "\n";
         } else {
-            return $label = '';
-            
+            return $label = ''; 
         }
     }
     
