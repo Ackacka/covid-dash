@@ -151,7 +151,7 @@ switch ($action) {
                 $emailError = 'Email already in use.';
         }        
         $cityError = Validation::validCity($city, 'City');
-        $stateError = Validation::isNotEmpty($state, 'State');
+        $stateError = Validation::validState($state, 'State');
         $zipcodeError = Validation::validZipcode($zipcode, 'Zipcode');
         $usernameError = Validation::validUsernameComplete($username, 'Username');
         if($username == "") {

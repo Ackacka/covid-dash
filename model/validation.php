@@ -111,6 +111,17 @@ public function validUsernameComplete($arg, $label) {
         }
     }
     
+    public function validState ($state, $label) {
+        if (!in_array($state, array(   "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", 
+                                        "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", 
+                                        "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", 
+                                        "VT", "VA", "WA", "WV", "WI", "WY"  ))) {
+            return $label = 'Select a valid state.' . "\n";
+        } else {
+            return $label = '';
+            
+        }
+    }
     
     public function validZipcode ($arg, $label) {
         $filtArg = filter_var($arg, FILTER_VALIDATE_INT);
