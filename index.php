@@ -18,6 +18,10 @@ if(!isset($_SESSION['loginUser'])) {
  $_SESSION['loginUser'] = "defaultUser";   
 }
 
+if(!isset($_SESSION['roleType'])) {
+ $_SESSION['roleType'] = 1;   
+}
+
 
 $action = filter_input(INPUT_POST, "action");
 if ($action === null) {
@@ -28,11 +32,9 @@ if ($action === null) {
 }
 
 switch ($action) {
-    case "mainPage":
-        
-        $dashInfo = covidApi::getCurrent();  
-        
-        include 'dashboard/dashboard_mainPage.php';
+    case "mainPage":  
+//        $dashInfo = covidApi::getCurrent();          
+        include 'dashboard/mainPage.php';
         die();
         break;
     case "loginPage":
@@ -48,13 +50,13 @@ switch ($action) {
         $password = filter_input(INPUT_POST, 'password');        
         $pwdHash = userDB::getPassword($username);
 
-
         if (password_verify($password, $pwdHash)) {
             $passwordError = "";
             $_SESSION['loginUser'] = $username;
             $user = UserDB::getUserByUsername($username);
-            
-            include './dashboard/dashboard_mainPage.php';
+            $_SESSION['roleType'] = $user['roleTypeID'];
+            $dashInfo = covidApi::getCurrent();
+            include './dashboard/dashboard_mainDashboard.php';
             die();
             break;
             //more stuff if successful password match
@@ -76,6 +78,11 @@ switch ($action) {
         }
 
         include './account/account_login.php';
+        die();
+        break;
+    case "dashboard":
+        $dashInfo = covidApi::getCurrent();
+        include './dashboard/dashboard_mainDashboard.php';
         die();
         break;
     case "showAddUser":
@@ -185,7 +192,8 @@ switch ($action) {
     case "logOut":
         session_destroy();
         $_SESSION['loginUser'] = 'defaultUser';
-        include "./dashboard/dashboard_mainPage.php";
+        $_SESSION['roleType'] = 1;
+        include "./dashboard/mainPage.php";
         die();
         break;
 }
