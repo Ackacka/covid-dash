@@ -196,5 +196,10 @@ switch ($action) {
         include "./dashboard/mainPage.php";
         die();
         break;
+    
+    case "adminDash":           
+        include 'dashboard/dashboard_adminDash.php';
+        die();
+        break;
 }
 ?>
