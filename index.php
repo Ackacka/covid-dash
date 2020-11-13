@@ -13,6 +13,7 @@ require_once './model/user.php';
 require_once './model/userDB.php';
 require_once './model/validation.php';
 require_once './model/covidApi.php';
+require_once './model/chartData.php';
 
 if(!isset($_SESSION['loginUser'])) {
  $_SESSION['loginUser'] = "defaultUser";   
@@ -81,7 +82,19 @@ switch ($action) {
         die();
         break;
     case "dashboard":
-        $dashInfo = covidApi::getCurrent();
+        $state = filter_input(INPUT_POST, 'states');
+        if($state !== null){
+            $state = filter_input(INPUT_POST, 'states');
+        } else {
+            $state = 'us';
+        }
+        if (!isset($stateError)) {
+            $stateError = '';
+        }
+        $dashInfo = CovidApi::getCurrent();
+        $chartData = CovidApi::getHistoricStateOrUS($state);
+        $dataPoints = ChartData::getDataPoints($chartData);
+        $chartTitle = ChartData::getChartTitle($state);
         include './dashboard/dashboard_mainDashboard.php';
         die();
         break;
