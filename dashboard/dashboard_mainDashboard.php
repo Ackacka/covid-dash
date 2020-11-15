@@ -127,14 +127,19 @@
                             </div>
                         </div>
                     </div>
+                <div class="col-sm-9 caseschart">
+                <div class="card">
+                <div class="card-body">
                     <div class="row">
-                        <form action="index.php" method="post" enctype="multipart/form-data">
+                        <div class="col-sm-12">
+                        <form class="form-inline" action="index.php" method="post" enctype="multipart/form-data">
                             <input type='hidden' name='action' value='dashboard'>
-                            <div class="form-group">
-                            <label class="control-label col-sm-4 m-3" for="state">State:</label>
-                            <div class="col-sm-10 ml-3">          
-                                <select name='states'  class="form-control">
-                                    <option selected="selected">Select A State</option>
+                            <div class="form-group col-sm-12 pt-4" >
+                            <label class="control-label col-sm-2 bystate"  for="state">Cases By State:</label>
+                            <div class="col-sm-4" >
+                                
+                                <select name='states' class="form-control">
+                                    <option id="state" selected="selected">Select A State</option>
                                     <?php
                                     // A sample product array
                                     $states = array("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA",
@@ -150,20 +155,21 @@
                                 </select>
                                 <span class="errorMsg error"> <?php echo htmlspecialchars($stateError) ?></span>
                                 
-                                <input type='submit' class='btn btn-primary' value='Submit'></submit>
+                                <input type='submit' class='btn btn-secondary' value='Submit'></submit>
                             </div>
-                        </div>
+                            </div>
                         </form>
-                        
+                        </div>
                     </div>
-
-
+                
                     <div class="row justify-content-center ">
                         <div class="col-sm mt-5">
-                            <div id="chartContainer" style="height: 300px; width: 80%;"></div>
+                            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
                         </div>
                     </div>
-
+                </div>
+                </div>
+                    </div>
                 </div>
 
             </div>
