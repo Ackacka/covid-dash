@@ -26,7 +26,7 @@
 			</div>
                     <br>
                     
-		<input type="submit" type="submit" value="LOGIN" class="btn-login"/>                       
+		<input type="submit" value="LOGIN" class="btn-login"/>                       
 		</form>
                 <br>
                 <p>Do not have an account?</p>
