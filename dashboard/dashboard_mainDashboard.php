@@ -4,8 +4,6 @@
 
     <head>
         <?php include_once('dashboard_headPage.php'); ?>   
-        <link rel="stylesheet" href="vendors/themify-icons/css/themify-icons.css">
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/mystyle.css">
         <script>
@@ -99,7 +97,7 @@
                         </div> 
                     </div>
 
-                    <div class='secondcontainer content mt-3'>
+<!--                    <div class='secondcontainer content mt-3'>
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-body">
@@ -126,8 +124,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <div class="col-sm-9 caseschart">
+                    </div>-->
+                <div class="col-sm-12 caseschart">
                 <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -176,6 +174,6 @@
         </div>
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-        <script src="vendors/js/widgets.js"></script>
+<!--        <script src="vendors/js/widgets.js"></script>-->
     </body>
 </html>

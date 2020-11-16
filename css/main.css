@@ -5,10 +5,82 @@ body {
     
     width: 100%;
     margin: auto;
-    text-align: center;
+    text-align: left;
 }
 
 nav{
     background-color: #272c33;
     margin-bottom: 0px;
 }
+
+.secondcontainer {
+        margin-top: 10em !important;
+        margin-left: 20em;
+
+    }
+.card-body {
+        padding: 15;
+    }
+    
+
+/*        Widget One
+---------------------------*/
+.dib {
+  display: inline-block; }
+
+.stat-widget-one .stat-icon i {
+  font-size: 30px;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 100px;
+  padding: 15px;
+  font-weight: 900;
+  display: inline-block; }
+
+.stat-widget-one .stat-content {
+  margin-left: 30px;
+  margin-top: 7px; }
+
+
+.stat-widget-one .stat-digit {
+  font-size: 24px;
+  color: #373757; }
+
+  .user-area .count {
+    background: #d9534f;
+    border-radius: 50%;
+    color: #fff;
+    font-family: 'Open Sans';
+    font-size: 9px;
+    font-weight: 700;
+    float: right;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    text-align: center; }
+  
+  .card {
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .bottomjumbodiv {
+    height: 200px;
+    padding: 0;
+    background-image: url("../images/holdinghand.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: transparent;
+    margin-bottom: 1em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: 0 auto;
+    }
+    .saying {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: 2.2em;
+    color: white;
+}
+ 

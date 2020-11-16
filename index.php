@@ -34,7 +34,7 @@ if ($action === null) {
 
 switch ($action) {
     case "mainPage":  
-//        $dashInfo = covidApi::getCurrent();          
+        $dashInfo = covidApi::getCurrent();          
         include 'dashboard/mainPage.php';
         die();
         break;
@@ -56,7 +56,19 @@ switch ($action) {
             $_SESSION['loginUser'] = $username;
             $user = UserDB::getUserByUsername($username);
             $_SESSION['roleType'] = $user['roleTypeID'];
-            $dashInfo = covidApi::getCurrent();
+//            $dashInfo = covidApi::getCurrent();
+            $state = filter_input(INPUT_POST, 'states');
+            if($state !== null){
+                $state = filter_input(INPUT_POST, 'states');
+            } else {
+                $state = 'us';
+            }
+            $chartData = CovidApi::getHistoricStateOrUS($state);
+            $dataPoints = ChartData::getDataPoints($chartData);
+            $chartTitle = ChartData::getChartTitle($state);
+            if (!isset($stateError)) {
+            $stateError = '';
+        }
             include './dashboard/dashboard_mainDashboard.php';
             die();
             break;
@@ -91,7 +103,7 @@ switch ($action) {
         if (!isset($stateError)) {
             $stateError = '';
         }
-        $dashInfo = CovidApi::getCurrent();
+//        $dashInfo = CovidApi::getCurrent();
         $chartData = CovidApi::getHistoricStateOrUS($state);
         $dataPoints = ChartData::getDataPoints($chartData);
         $chartTitle = ChartData::getChartTitle($state);
@@ -206,6 +218,7 @@ switch ($action) {
         session_destroy();
         $_SESSION['loginUser'] = 'defaultUser';
         $_SESSION['roleType'] = 1;
+        $dashInfo = covidApi::getCurrent();
         include "./dashboard/mainPage.php";
         die();
         break;

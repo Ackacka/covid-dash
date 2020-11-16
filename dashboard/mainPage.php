@@ -40,9 +40,40 @@
   </div>  
 </nav>
     
+                    <div class='secondcontainer content mt-3 row'>
+                        <div class="col-sm-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="stat-widget-one">
+                                        <div class="stat-icon dib"><i class="ti-stats-up text-danger border-danger"></i></div>
+                                        <div class="stat-content dib">
+                                            <div class="stat-text">Total Deaths</div>
+                                            <div class="stat-digit count"><?php echo $dashInfo['death'] ?></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="stat-widget-one">
+                                        <div class="stat-icon dib"><i class="ti-stats-up text-success border-success"></i></div>
+                                        <div class="stat-content dib">
+                                            <div class="stat-text">Total Positive Cases</div>
+                                            <div class="stat-digit count"><?php echo $dashInfo['positive'] ?></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+        <div class="jumbotron text-center bottomjumbodiv"> 
+        <p class="saying">"We are all in this together!"</p>
+        </div>
 
-
-
+<script src="vendors/js/widgets.js"></script>
 </body>
 </html>
 
