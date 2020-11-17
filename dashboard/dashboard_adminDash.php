@@ -3,8 +3,6 @@
 
 <head>
     <?php include_once('dashboard_headPage.php'); ?>   
-    <link rel="stylesheet" href="vendors/themify-icons/css/themify-icons.css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/mystyle.css">
 </head>
@@ -22,10 +20,14 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="dashboard"><a href="index.php?action=mainPage" class="menu-icon"> <i class="menu-icon fa fa-dashboard"></i>Dashboard</a></li>        
+        <li class="dashboard"><a href="index.php?action=mainPage" class="menu-icon"> <i class="menu-icon fas fa-home"></i>Home</a></li>
+        <li class="dashboard"><a href="index.php?action=dashboard" class="menu-icon"> <i class="menu-icon fa fa-dashboard"></i>Dashboard</a></li>        
+        <?php if ($_SESSION['roleType'] == 2) { ?>
         <li class="dashboard">
             <a href="index.php?action=showUsers" class="menu-icon"> <i class="menu-icon ti-settings"></i>Edit Users</a>
         </li>
+        <li class="dashboard"><a href="index.php?action=adminDash" class="menu-icon"> <i class="menu-icon fas fa-user-shield"></i>Admin</a></li>
+        <?php } ?>
         <li class="dashboard">
             <a href="index.php?action=logOut" class="menu-icon"> <i class="menu-icon fas fa-sign-out-alt"></i>Logout</a>
         </li>
@@ -39,12 +41,22 @@
     <div class="col-sm-2 sidenav hidden-xs">
       <h3 class="mytitle">SNMT-COVID</h3>
       <ul class="nav nav-stacked">
-        <li class="dashboard"><a href="index.php?action=mainPage" class="menu-icon dashboardName"> <i class="menu-icon fa fa-dashboard"></i>Dashboard</a></li>
+        <li class="dashboard"><a href="index.php?action=mainPage" class="menu-icon dashboardName"> 
+            <i class="menu-icon fas fa-home"></i>Home</a></li>
+        <h3 class="menu-title">Dashboard</h3>
+        <li class="dashboard"><a href="index.php?action=dashboard" class="menu-icon dashboardName"> 
+             <i class="menu-icon fa fa-dashboard"></i>Dashboard</a></li>
         <h3 class="menu-title">Edit Users</h3><!-- /.menu-title -->
         <li class="dashboard">
             <a href="index.php?action=showUsers" class="menu-icon"> <i class="menu-icon ti-settings"></i>Users</a>
         </li>
         <h3 class="menu-title">Account</h3><!-- /.menu-title -->
+        <?php if ($_SESSION['roleType'] == 2) { ?>
+        <li class="dashboard">
+            <a class="menu-icon" href="index.php?action=adminDash">
+                    <i class="menu-icon fas fa-user-shield"></i><?php echo htmlspecialchars('  Admin'); ?></a>
+        </li>            
+        <?php } ?>
         <li class="dashboard">
             <a href="index.php?action=logOut" class="menu-icon"> <i class="menu-icon fa fa-power-off"></i>Logout</a>
         </li>
@@ -56,23 +68,6 @@
     <div class="col-sm-10 mycontainer">
           <div class="well">
               <h3><i class="menu-icon fa fa-dashboard"></i>Dashboard</h3>
-                    <div class="user-area dropdown float-right show">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-user user-avatar rounded-circle"></i>
-                        </a>
-                        <div class="user-menu dropdown-menu">
-                            <?php if ($_SESSION['roleType'] == 2) { ?>
-                            <a class="nav-link" href="index.php?action=adminDash">
-                            <i class="fas fa-user-shield"></i> <?php echo htmlspecialchars(' Admin');?></a>
-                            <?php } ?>
-                            <?php if ($_SESSION["loginUser"] == "defaultUser") { ?>
-                            <a class="nav-link" href="index.php?action=loginPage">
-                            <i class="fas fa-sign-in-alt"></i> <?php echo htmlspecialchars(' Login');?></a>
-                            <?php } else { ?>
-                            <a class="nav-link" href="index.php?action=logOut"><i class="fa fa-power-off"></i> Logout</a>
-                            <?php } ?> 
-                        </div>
-                    </div> 
         </div>
         
         <div class='secondcontainer content mt-3'>
