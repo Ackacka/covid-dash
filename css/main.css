@@ -1,28 +1,52 @@
-body {
+/* home page style
+---------------------*/
+.homepage {
     background-image: url("../images/map.jpg");
+    background-position: center center;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-attachment: fixed;
+    background-size: cover;   
+    overflow: hidden;
+/*    margin: auto;
+    text-align: left;  */
     
-    width: 100%;
-    margin: auto;
-    text-align: left;
 }
-
-nav{
+.homenav{
     background-color: #272c33;
     margin-bottom: 0px;
 }
-
-.secondcontainer {
+.homewidgets {
         margin-top: 10em !important;
         margin-left: 20em;
 
-    }
-.card-body {
+}
+.home-card-body {
         padding: 15;
+}
+.home-card {
+        background-color: rgba(255, 255, 255, 0.8);
     }
     
-
+.bottomjumbodiv {
+    height: 32%;
+    padding: 0;
+    background-image: url("../images/holdinghand.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: transparent;
+    margin-bottom: 1em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: 0 auto;
+    }
+.saying {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: 2.2em;
+    color: white;
+}
 /*        Widget One
 ---------------------------*/
 .dib {
@@ -38,8 +62,8 @@ nav{
   display: inline-block; }
 
 .stat-widget-one .stat-content {
-  margin-left: 30px;
-  margin-top: 7px; }
+  margin-left: 10%;
+  margin-top: 2%; }
 
 
 .stat-widget-one .stat-digit {
@@ -59,28 +83,206 @@ nav{
     line-height: 20px;
     text-align: center; }
   
-  .card {
-        background-color: rgba(255, 255, 255, 0.8);
-    }
-    
-    .bottomjumbodiv {
-    height: 200px;
-    padding: 0;
-    background-image: url("../images/holdinghand.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-color: transparent;
-    margin-bottom: 1em;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    margin: 0 auto;
-    }
-    .saying {
-    font-family: "Times New Roman", Times, serif;
-    font-weight: bold;
-    text-align: center;
-    font-size: 2.2em;
+  
+/* login Page style
+-------------------------*/
+.logReg{
+	margin: 0 auto;
+	background-repeat: no-repeat;
+	background-size: 100% 720px;
+        background-color: #272c33;
+
+}
+.login {
+    color: lightgrey;
+}
+
+.logincontainer{
+	width: 500px;
+        height: 100%;
+	text-align: center;
+	margin: 0 auto;
+        background-color: rgba(66, 73, 78, 0.7);
+	margin-top: 6em;
+        padding-bottom: 10px;
+}
+
+.logincontainer img{
+	width: 150px;
+	height: 150px;
+	margin-top: -60px;
+}
+
+.login-input{
+        border-radius: 5px;
+        margin-top: 30px;
+	height: 45px;
+	width: 300px;
+	font-size: 18px;
+	margin-bottom: 3px;
+	background-color: #fff;
+	padding-left: 40px;
+}
+
+.login-form-input::before{
+	content: "\f023";
+	font-family: "FontAwesome";
+	padding-left: 07px;
+	padding-top: 35px;
+	position: absolute;
+	font-size: 30px;
+	color: #2980b9;
+        font-weight: 900;
+}
+
+.login-form-input:nth-child(2)::before{
+	content: "\f007";
+}
+
+.btn-login{
+	padding: 10px 20px;
+	border: none;
+	background-color: #27ae60;
+	color: #fff;
+        border-radius: 5px;
+}
+.register {
     color: white;
 }
- 
+
+.logo-badge {
+    color: #e6e6e6;
+    font-size: 80px;
+    font-weight: 800;
+    letter-spacing: -10px;
+    margin-bottom: 0;
+}
+
+/* register page style
+--------------------------*/
+        .contact{
+		padding: 4%;
+		height: 400px;
+	}
+	.registersidebar{
+                background-color: #aaa;
+                padding: 4%;
+		border-top-left-radius: 0.5rem;
+		border-bottom-left-radius: 0.5rem;
+	}
+	.contact-info{
+		margin-top:10%;
+	}
+	.contact-info img{
+		margin-bottom: 15%;
+                width: 80px;
+	}
+	.contact-info h2{
+		margin-bottom: 10%;
+	}
+	.registercontainer{
+		background: #fff;
+		padding: 3%;
+		border-top-right-radius: 0.5rem;
+		border-bottom-right-radius: 0.5rem;
+	}
+        .useradmin {
+            margin-left: 20px;
+        }  
+        .errorMsg {
+            color: red;
+        }
+/* dashboard style
+------------------------*/
+.row.content {height: 100%;}
+    
+    .sidenav {
+      background: #272c33;
+      height: 100vh;
+    }
+    .mytitle {
+        color: whitesmoke;
+        text-align: center;
+    }
+    .dashboard {
+        font-size: 16px;
+    }
+    .menu-icon {
+          color: #8b939b;
+          padding-right: 2em; }
+    .dashboard > a:hover, .dashboard > a:hover .menu-icon {
+        color: #fff;
+        background-color: transparent !important;
+    }
+    .mycontainer {
+        padding: 0;
+    }
+    .well {
+        margin-bottom: 5px;
+    }
+    .menu-title {
+    border-bottom: 1px solid #4e4e52;
+    color: #9496a1;
+    clear: both;
+    display: block;
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 50px;
+    padding: 15px 0 0;
+    text-transform: uppercase;
+    width: 100%;
+  }
+  
+  .welcomewell{
+      padding: 20%;
+  }
+  
+  .welcome {
+      color: black;
+      font-size: 33px !important;
+  }
+  .bystate {
+      margin-left: 28% !important;
+      padding-right: 0;
+      padding-left: 0;
+      padding-top: 2px;
+  }
+  .caseschart {
+      padding-top: 1rem;
+  }
+  @media screen and (max-width:1500px) {
+        .row.content {height: auto;}
+        .mytitle .menu-icon{color: #8b939b;}
+        .navbar-toggler{float: right;}
+  }
+  @media screen and (max-width: 1500px ) and (min-width: 1200px) {
+        .bottomjumbodiv {background-size: 100%; bottom: -4em; background-position: center center;}
+        .homewidgets {margin-top: 15% !important; margin-left: 20%; margin-right: 2%;}
+        .home-card{margin-bottom: 5px;}
+  }
+  @media screen and (max-width: 1199px) and (min-width: 992px) {
+        .bottomjumbodiv {background-size: 105%; bottom: -5em; background-position: center center;}
+        .homewidgets {margin-top: 15% !important; margin-left: 20%; margin-right: 2%;}
+        .home-card{margin-bottom: 5px;}
+  }
+  @media screen and (max-width: 991px) and (min-width: 769px) {
+        .sidenav {height: auto;}
+        .bottomjumbodiv {background-size: 110%; bottom: -5em; background-position: center center;}
+        .homewidgets {margin-top: 15% !important; margin-left: 20%; margin-right: 2%;}
+        .home-card{margin-bottom: 5px;}
+  }
+    @media screen and (max-width: 768px) and (min-width: 577px)  {
+        .sidenav {height: auto;}
+        .bottomjumbodiv {background-size: 150%; bottom: -5em; background-position: center center;}
+        .homewidgets {margin-top: 20% !important; margin-left: 20% !important; margin-right: 2%;}
+        .home-card{margin-bottom: 5px;}
+    }
+      /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 576px) {
+      .sidenav {height: auto;}
+      .bottomjumbodiv {background-size: 150%; bottom: -5em; background-position: center center;}
+      .homewidgets {margin-top: 20% !important; margin-left: 2%; margin-right: 2%;}
+      .home-card{margin-bottom: 5px;}
+    }
+    

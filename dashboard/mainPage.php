@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <?php include_once('dashboard_headPage.php'); ?>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-</head>
-<body>
+<?php include_once('views/header.php'); ?>
+<body class="homepage">
 
-<nav class="navbar navbar-expand-md navbar-dark">
+<nav class="navbar navbar-expand-md navbar-dark homenav">
   <a class="navbar-brand" href="index.php?action=landing">SNMT-COVID</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
@@ -39,11 +34,11 @@
                 </li>
   </div>  
 </nav>
-    
-                    <div class='secondcontainer content mt-3 row'>
-                        <div class="col-sm-4">
-                            <div class="card">
-                                <div class="card-body">
+
+                    <div class='homewidgets content mt-3 row'>
+                        <div class="col-sm-9 col-md-8 col-lg-5  col-xl-5">
+                            <div class="card home-card">
+                                <div class="card-body home-card-body">
                                     <div class="stat-widget-one">
                                         <div class="stat-icon dib"><i class="ti-stats-up text-danger border-danger"></i></div>
                                         <div class="stat-content dib">
@@ -54,9 +49,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="card">
-                                <div class="card-body">
+                        <div class="col-sm-9 col-md-8 col-lg-5 col-xl-5">
+                            <div class="card home-card">
+                                <div class="card-body home-card-body">
                                     <div class="stat-widget-one">
                                         <div class="stat-icon dib"><i class="ti-stats-up text-success border-success"></i></div>
                                         <div class="stat-content dib">
@@ -69,12 +64,10 @@
                         </div>
                     </div>
     
-        <div class="jumbotron text-center bottomjumbodiv"> 
+        <div class="text-center bottomjumbodiv"> 
         <p class="saying">"We are all in this together!"</p>
         </div>
 
-<script src="vendors/js/widgets.js"></script>
-</body>
-</html>
+<?php include_once('views/footer.php'); ?>
 
 

@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <?php include_once('dashboard/dashboard_headPage.php'); ?>
-        <link rel="stylesheet" type="text/css" href="css/addUser.css"/>
-    </head>
-    <body>
+<?php include_once('views/header.php'); ?>
+    <body class="logReg">
         <div class="container contact">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 registersidebar">
                     <div class="contact-info">
-                        <img class="add" src="images/add-friend.png"/>
+                        <img src="images/add-friend.png"/>
                         <h2>Register</h2>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9 registercontainer">
                     <form action="index.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="action" value="addUser">			
                         <div class="form-group">
@@ -99,5 +94,4 @@
             </div>
         </div>
     </div>       
-</body>
-</html>
+<?php include_once 'views/footer.php'; ?>

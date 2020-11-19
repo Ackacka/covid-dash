@@ -1,107 +1,45 @@
 <?php //  var_dump($chartTitle);  ?>
-<!doctype html>
-<html class="no-js" lang="en">
-
-    <head>
-        <?php include_once('dashboard_headPage.php'); ?>   
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/mystyle.css">
-        <script>
-            window.onload = function () {
-
-                var chart = new CanvasJS.Chart("chartContainer", {
-                    animationEnabled: true,
-                    exportEnabled: true,
-                    theme: "light1", // "light1", "light2", "dark1", "dark2"
-                    title: {
-                        text: "<?php echo $chartTitle; ?>"
-                    },
-                    axisY: {
-                        includeZero: true
-                    },
-                    axisX: {
-                        title: "Dates",
-                        valueFormatString: "DD-MMM"
-                    },
-                    data: [{
-                            type: "line", //change type to bar, line, area, pie, etc
-                            //indexLabel: "{y}", //Shows y value on all Data Points
-                            indexLabelFontColor: "#5A5757",
-                            indexLabelPlacement: "outside",
-                            dataPoints: <?php echo $dataPoints; ?>
-                        }]
-                });
-                chart.render();
-
-
-            }
-        </script>
-
-    </head>
-
+<?php include_once 'views/header.php'; ?>
     <body>
-
-        <nav class="navbar navbar-inverse visible-xs">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                    </button>
-                    <a class="navbar-brand mytitle" href="index.php?action=mainPage">SNMT-COVID</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                  <li class="dashboard"><a href="index.php?action=mainPage" class="menu-icon"> <i class="menu-icon fas fa-home"></i>Home</a></li>
-                  <li class="dashboard"><a href="index.php?action=dashboard" class="menu-icon"> <i class="menu-icon fa fa-dashboard"></i>Dashboard</a></li>        
-                  <?php if ($_SESSION['roleType'] == 2) { ?>
-                  <li class="dashboard">
-                      <a href="index.php?action=showUsers" class="menu-icon"> <i class="menu-icon ti-settings"></i>Edit Users</a>
-                  </li>
-                  <li class="dashboard"><a href="index.php?action=adminDash" class="menu-icon"> <i class="menu-icon fas fa-user-shield"></i>Admin</a></li>
-                  <?php } ?>
-                  <li class="dashboard">
-                      <a href="index.php?action=logOut" class="menu-icon"> <i class="menu-icon fas fa-sign-out-alt"></i>Logout</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-        </nav>
-
-
 
         <div class="container-fluid">
             <div class="row content">
-                <div class="col-sm-2 sidenav hidden-xs">
-                    <h3 class="mytitle">SNMT-COVID</h3>
-                    <ul class="nav nav-stacked">
-                        
-                        <li class="dashboard"><a href="index.php?action=mainPage" class="menu-icon dashboardName"> 
-                                <i class="menu-icon fas fa-home"></i>Home</a></li>
-                        <h3 class="menu-title">Dashboard</h3>
-                        <li class="dashboard"><a href="index.php?action=dashboard" class="menu-icon dashboardName"> 
-                                <i class="menu-icon fa fa-dashboard"></i>Dashboard</a></li>
-                    
-                        <h3 class="menu-title">Account</h3><!-- /.menu-title -->
-                        <?php if ($_SESSION['roleType'] == 2) { ?>
-                        <li class="dashboard">
-                            <a class="menu-icon" href="index.php?action=adminDash">
+                <div class="col-lg-2 sidenav hidden-xs navbar-expand-lg navbar-dark">
+                    <a class="mytitle navbar-brand" href="index.php?action=mainPage">SNMT-COVID</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        <ul class="nav nav-stacked navbar-nav">
+                            <h3 class="menu-title">Dashboard</h3>
+                            <li class="dashboard nav-item"><a href="index.php?action=dashboard" class="menu-icon dashboardName nav-link"> 
+                                    <i class="menu-icon fa fa-dashboard"></i>Dashboard</a></li>
+                            <h3 class="menu-title">Edit Users</h3><!-- /.menu-title -->
+                            <li class="dashboard nav-item">
+                                <a href="index.php?action=showUsers" class="menu-icon nav-link"> <i class="menu-icon ti-settings"></i>Users</a>
+                            </li>
+                            <h3 class="menu-title">Account</h3><!-- /.menu-title -->
+                            <?php if ($_SESSION['roleType'] == 2) { ?>
+                                <li class="dashboard nav-item">
+                                    <a class="menu-icon nav-link" href="index.php?action=adminDash">
                                         <i class="menu-icon fas fa-user-shield"></i><?php echo htmlspecialchars('  Admin'); ?></a>
-                        </li>            
-                        <?php } ?>
-                        <li class="dashboard">
-                            <a href="index.php?action=logOut" class="menu-icon"> <i class="menu-icon fa fa-power-off"></i>Logout</a>
-                        </li>
-                    </ul><br>
+                                </li>            
+                            <?php } ?>
+                            <li class="dashboard nav-item">
+                                <a href="index.php?action=logOut" class="menu-icon nav-link"> <i class="menu-icon fa fa-power-off"></i>Logout</a>
+                            </li>
+                        </ul><br>
+                    </div>
                 </div>
                 <br>
 
 
-                <div class="col-sm-10 mycontainer">        
-                    <div class="well">
-                        <h3><i class="menu-icon fa fa-dashboard"></i>Dashboard</h3>
-                    </div>
+              <div class="col-lg-10 mycontainer">
+              <div class="well card">
+                <div class="card-body">
+                    <h3><i class="menu-icon fa fa-dashboard"></i>Dashboard</h3>
+                </div>
+              </div>
 
                 <div class="col-sm-12 caseschart">
                 <div class="card">
@@ -150,8 +88,4 @@
 
             </div>
         </div>
-        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-        <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-<!--        <script src="vendors/js/widgets.js"></script>-->
-    </body>
-</html>
+<?php include_once 'views/footer.php'; ?>
