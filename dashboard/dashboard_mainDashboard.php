@@ -14,9 +14,31 @@
                             <h3 class="menu-title">Dashboard</h3>
                             <li class="dashboard nav-item"><a href="index.php?action=dashboard" class="menu-icon dashboardName nav-link"> 
                                     <i class="menu-icon fa fa-dashboard"></i>Dashboard</a></li>
-                            <h3 class="menu-title">Edit Users</h3><!-- /.menu-title -->
+                            <h3 class="menu-title">Preferred Location</h3>
                             <li class="dashboard nav-item">
-                                <a href="index.php?action=showUsers" class="menu-icon nav-link"> <i class="menu-icon ti-settings"></i>Users</a>
+                                <form action="index.php" method="post">
+                                    <div class="input-group">
+                                        <input type="hidden" name="action" value="setLocation"/>
+                                        <select name='states' class="form-control">
+                                            <option id="state" selected="selected">Select Location</option>
+                                            <?php
+                                            // A sample product array
+                                            $states = array("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA",
+                                                "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH",
+                                                "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT",
+                                                "VT", "VA", "WA", "WV", "WI", "WY");
+
+                                            // Iterating through the product array
+                                            foreach ($states as $state) {
+                                                echo "<option value='$state'>$state</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                        <span class="errorMsg error"> <?php echo htmlspecialchars($stateError) ?></span>
+
+                                        <input type='submit' class='btn btn-secondary' value='Set'></submit>
+                                    </div>
+                                </form>
                             </li>
                             <h3 class="menu-title">Account</h3><!-- /.menu-title -->
                             <?php if ($_SESSION['roleType'] == 2) { ?>
