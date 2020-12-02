@@ -2,7 +2,7 @@
 
 class ChartData {
 
-    public static function getDataPoints($chartData) {
+    public static function getDataPoints($chartData, $yaxis) {
         $xAxisDates;
         $yAxisValues;
         $monthTracker = '';
@@ -10,17 +10,17 @@ class ChartData {
         $dataPoints = array();
         for ($i = 0; $i < count($chartData); $i++) {
 
-            if (!is_null($chartData[$i]['positive'])) {
+            if (!is_null($chartData[$i][$yaxis])) {
                 $chartDate = $chartData[$i]['date'];
                 $date = mktime(12, 0, 0, substr($chartDate, 4, 2), substr($chartDate, 6, 2), substr($chartDate, 0, 4));
                 $month = date('M', $date);
 
 //            if($chartData[$i])
                 if ($month !== $monthTracker) {
-                    array_push($dataPoints, '{ x: new Date(' . $date * 1000 . '), y: ' . $chartData[$i]['positive'] . ', indexLabel: "' . $month . '" }');
+                    array_push($dataPoints, '{ x: new Date(' . $date * 1000 . '), y: ' . $chartData[$i][$yaxis] . ', indexLabel: "' . $month . '" }');
                     $monthTracker = $month;
                 } else {
-                    array_push($dataPoints, '{ x: new Date(' . $date * 1000 . '), y: ' . $chartData[$i]['positive'] . ' }');
+                    array_push($dataPoints, '{ x: new Date(' . $date * 1000 . '), y: ' . $chartData[$i][$yaxis] . ' }');
                 }
             }
         }
@@ -36,13 +36,17 @@ class ChartData {
         return $dataPointsString;
     }
 
-    public static function getChartTitle($state) {
+    public static function getChartTitle($state, $yaxis) {
         $title = '';
-        if ($state === 'us') {
-            $title = 'COVID cases nationally over time';
-        } else {
+        $firstHalfTitle = '';
+        if($yaxis === 'positive'){
             $title = 'COVID cases in ' . $state . ' over time';
+        } else if ($yaxis === 'hospitalizedCurrently') {
+            $title = 'Hospitalizations in ' . $state . ' over time';
+        } else if ($yaxis === 'death') {
+            $title = 'COVID deaths in ' . $state . ' over time';
         }
+        
         return $title;
     }
 

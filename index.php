@@ -65,15 +65,16 @@ switch ($action) {
             $user = UserDB::getUserByUsername($username);
             $_SESSION['roleType'] = $user['roleTypeID'];
 //            $dashInfo = covidApi::getCurrent();
-            $state = filter_input(INPUT_POST, 'states');
-            if ($state !== null) {
-                $state = filter_input(INPUT_POST, 'states');
+            $state = 'us';
+            $yaxis = filter_input(INPUT_POST, 'yaxis');
+            if ($yaxis !== null) {
+                $yaxis = filter_input(INPUT_POST, 'yaxis');
             } else {
-                $state = 'us';
+                $yaxis = 'positive';
             }
             $chartData = CovidApi::getHistoricStateOrUS($state);
-            $dataPoints = ChartData::getDataPoints($chartData);
-            $chartTitle = ChartData::getChartTitle($state);
+            $dataPoints = ChartData::getDataPoints($chartData, $yaxis);
+            $chartTitle = ChartData::getChartTitle($state, $yaxis);
             if (!isset($stateError)) {
                 $stateError = '';
             }
@@ -102,19 +103,24 @@ switch ($action) {
         die();
         break;
     case "dashboard":
-        $state = filter_input(INPUT_POST, 'states');
-        if ($state !== null) {
-            $state = filter_input(INPUT_POST, 'states');
-        } else {
-            $state = 'us';
+        $state = strtolower(filter_input(INPUT_POST, 'states'));
+        $yaxis = filter_input(INPUT_POST, 'yaxis');
+        if (!isset($yaxis)) {
+            $yaxis = 'positive';
         }
+        if (!isset($state))
+        {
+            $state = 'us';
+        }            
+
         if (!isset($stateError)) {
             $stateError = '';
         }
 //        $dashInfo = CovidApi::getCurrent();
         $chartData = CovidApi::getHistoricStateOrUS($state);
-        $dataPoints = ChartData::getDataPoints($chartData);
-        $chartTitle = ChartData::getChartTitle($state);
+        $dataPoints = ChartData::getDataPoints($chartData, $yaxis);
+
+        $chartTitle = ChartData::getChartTitle($state, $yaxis);
         include './dashboard/dashboard_mainDashboard.php';
         die();
         break;

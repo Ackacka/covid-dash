@@ -33,8 +33,14 @@ class CovidApi {
     
     public static function getCurrentByState($state){
         $curl = curl_init();
+        $url = '';
+        if ($state === "US") {
+            $url = "https://api.covidtracking.com/v1/current.json";
+        } else {
+            $url = "https://api.covidtracking.com/v1/states/" .$state . "/current.json";
+        }
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.covidtracking.com/v1/states/" .$state . "/current.json",
+            CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_ENCODING => "",
@@ -45,8 +51,9 @@ class CovidApi {
         ));
 
         $response = curl_exec($curl);
+        
         $dResponse = json_decode($response, true);
-        $dResponse = $dResponse;
+        $dResponse = $dResponse;        
         if (array_key_exists('error', $dResponse)) {
             $apiErr = $dResponse['message'];
         } else {
@@ -127,6 +134,7 @@ class CovidApi {
         if ($err !== '') {
             var_dump($err);
         }
+        
         curl_close($curl);
         return $dResponse;
     }
