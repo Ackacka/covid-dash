@@ -34,7 +34,7 @@ class UserDB {
         $statement->closeCursor();
         return $user;
     }
-    
+
     public static function getPassword($username) {
         $db = Database::getDB();
         $query = 'SELECT password FROM users
@@ -51,7 +51,7 @@ class UserDB {
     }
 
     public static function uniqueUsernameTest($username) {
-        $db = Database::getDB();        
+        $db = Database::getDB();
         $userQuery = 'SELECT username FROM users WHERE username = :username;';
         $userStatement = $db->prepare($userQuery);
         $userStatement->bindValue(':username', $username);
@@ -62,7 +62,7 @@ class UserDB {
     }
 
     public static function uniqueEmailTest($email) {
-        $db = Database::getDB();        
+        $db = Database::getDB();
         $emailQuery = 'SELECT email FROM users WHERE email = :email;';
         $emailStatement = $db->prepare($emailQuery);
         $emailStatement->bindValue(':email', $email);
@@ -83,7 +83,7 @@ class UserDB {
         $password = $user->getPassword();
         $city = $user->getCity();
         $state = $user->getState();
-        $zipcode = $user ->getZipcode();
+        $zipcode = $user->getZipcode();
 
         try {
             // Add the user to the database  
@@ -96,8 +96,8 @@ class UserDB {
             $statement->bindValue(':firstName', $firstName);
             $statement->bindValue(':lastName', $lastName);
             $statement->bindValue(':email', $email);
-            $statement->bindValue(':username', $username);            
-            $statement->bindValue(':password', $password);                      
+            $statement->bindValue(':username', $username);
+            $statement->bindValue(':password', $password);
             $statement->bindValue(':city', $city);
             $statement->bindValue(':state', $state);
             $statement->bindValue(':zipcode', $zipcode);
@@ -110,4 +110,14 @@ class UserDB {
             exit();
         }
     }
+
+    public static function deleteUser($userID) {
+        $db = Database::getDB();
+        $query = 'DELETE FROM users WHERE userID = :userID';
+        $statement = $db->prepare($query);
+        $statement->bindValue(":userID", $userID);
+        $statement->execute();
+        $statement->closeCursor();
+    }
+
 }

@@ -67,11 +67,14 @@
                                             <td><?php echo htmlspecialchars($user['city']); ?></td>                    
                                             <td><?php echo htmlspecialchars($user['state']); ?></td>                   
                                             <td><?php echo htmlspecialchars($user['zipcode']); ?></td>                 
-                                            <td>
-                                                <form method="POST" action="index.php?action=deleteUser">
-                                                    <button class= "btn btn-danger" type="submit" name="userID" >Delete</button>
-                                                </form>
-                                            </td>                                                                           
+
+                                            <td><form action="." method="post">
+                                                    <input type="hidden" name="action"
+                                                           value="deleteUser">
+                                                    <input type="hidden" name="userID"
+                                                           value="<?php echo htmlspecialchars($user['userID']); ?>">
+                                                    <button class= "btn btn-danger" <input type="submit" value="Delete">Delete</button>
+                                                </form></td>
                                         </tr>
                                     <?php endforeach; ?> 
                                 </tbody>

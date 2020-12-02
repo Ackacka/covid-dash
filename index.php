@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php 
+<?php
 date_default_timezone_set('America/Chicago');
 
 $lifetime = 60 * 60 * 24 * 14;    // 2 weeks in seconds
@@ -15,12 +15,12 @@ require_once './model/validation.php';
 require_once './model/covidApi.php';
 require_once './model/chartData.php';
 
-if(!isset($_SESSION['loginUser'])) {
- $_SESSION['loginUser'] = "defaultUser";   
+if (!isset($_SESSION['loginUser'])) {
+    $_SESSION['loginUser'] = "defaultUser";
 }
 
-if(!isset($_SESSION['roleType'])) {
- $_SESSION['roleType'] = 1;   
+if (!isset($_SESSION['roleType'])) {
+    $_SESSION['roleType'] = 1;
 }
 
 
@@ -33,22 +33,30 @@ if ($action === null) {
 }
 
 switch ($action) {
-    case "mainPage":  
-        $dashInfo = covidApi::getCurrent();          
+    case "mainPage":
+        $dashInfo = covidApi::getCurrent();
         include 'dashboard/mainPage.php';
         die();
         break;
     case "loginPage":
-        if(!isset($usernameError)){$usernameError = '';}
-        if(!isset($passwordError)){$passwordError = '';}
-        if(!isset($username)){$username = '';}
-        if(!isset($password)) {$password = '';}
+        if (!isset($usernameError)) {
+            $usernameError = '';
+        }
+        if (!isset($passwordError)) {
+            $passwordError = '';
+        }
+        if (!isset($username)) {
+            $username = '';
+        }
+        if (!isset($password)) {
+            $password = '';
+        }
         include 'account/account_login.php';
         die();
         break;
     case "userLogin":
         $username = filter_input(INPUT_POST, 'username');
-        $password = filter_input(INPUT_POST, 'password');        
+        $password = filter_input(INPUT_POST, 'password');
         $pwdHash = userDB::getPassword($username);
 
         if (password_verify($password, $pwdHash)) {
@@ -58,7 +66,7 @@ switch ($action) {
             $_SESSION['roleType'] = $user['roleTypeID'];
 //            $dashInfo = covidApi::getCurrent();
             $state = filter_input(INPUT_POST, 'states');
-            if($state !== null){
+            if ($state !== null) {
                 $state = filter_input(INPUT_POST, 'states');
             } else {
                 $state = 'us';
@@ -67,8 +75,8 @@ switch ($action) {
             $dataPoints = ChartData::getDataPoints($chartData);
             $chartTitle = ChartData::getChartTitle($state);
             if (!isset($stateError)) {
-            $stateError = '';
-        }
+                $stateError = '';
+            }
             include './dashboard/dashboard_mainDashboard.php';
             die();
             break;
@@ -95,7 +103,7 @@ switch ($action) {
         break;
     case "dashboard":
         $state = filter_input(INPUT_POST, 'states');
-        if($state !== null){
+        if ($state !== null) {
             $state = filter_input(INPUT_POST, 'states');
         } else {
             $state = 'us';
@@ -135,7 +143,7 @@ switch ($action) {
         if (!isset($zipcode)) {
             $zipcode = '';
         }
-        
+
         if (!isset($firstNameError)) {
             $firstNameError = '';
         }
@@ -166,40 +174,40 @@ switch ($action) {
     case "addUser":
         $firstName = filter_input(INPUT_POST, 'firstName');
         $lastName = filter_input(INPUT_POST, 'lastName');
-        $email = filter_input(INPUT_POST, 'email');    
+        $email = filter_input(INPUT_POST, 'email');
         $city = filter_input(INPUT_POST, 'city');
         $state = $_POST['states'];
         $zipcode = filter_input(INPUT_POST, 'zipcode');
-        $username = filter_input(INPUT_POST, 'username');        
+        $username = filter_input(INPUT_POST, 'username');
         $password = filter_input(INPUT_POST, 'password');
-                    
+
         $firstNameError = Validation::validNameComplete($firstName, 'First Name');
         $lastNameError = Validation::validNameComplete($lastName, 'Last Name');
         $emailError = Validation::validEmail($email, 'Email');
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $emailError = "The email ".$email." is not a valid email.";
-        } 
+            $emailError = "The email " . $email . " is not a valid email.";
+        }
         if (!UserDB::uniqueEmailTest($email) === false) {
-                $emailError = 'Email already in use.';
-        }        
+            $emailError = 'Email already in use.';
+        }
         $cityError = Validation::validCity($city, 'City');
         $stateError = Validation::validState($state, 'State');
         $zipcodeError = Validation::validZipcode($zipcode, 'Zipcode');
         $usernameError = Validation::validUsernameComplete($username, 'Username');
-        if($username == "") {
+        if ($username == "") {
             if (UserDB::uniqueUsernameTest($username) === false) {
-            $usernameError = 'Username already taken.';
+                $usernameError = 'Username already taken.';
             }
-        }       
+        }
         $passwordError = Validation::validPasswordComplete($password, 'Password');
-        $pwdHash = password_hash($password, PASSWORD_BCRYPT);         
-         
+        $pwdHash = password_hash($password, PASSWORD_BCRYPT);
+
         //write user information to database
         if ($usernameError !== '' || $emailError !== '' || $passwordError !== '') {
             include("./account/account_register.php");
             die();
         } else {
-            if(isset($_POST["admin"])) {
+            if (isset($_POST["admin"])) {
                 $roleTypeID = 2;
                 $user = new User($roleTypeID, $firstName, $lastName, $email, $username, $pwdHash, $city, $state, $zipcode);
                 UserDB::addUser($user);
@@ -208,8 +216,8 @@ switch ($action) {
                 $user = new User($roleTypeID, $firstName, $lastName, $email, $username, $pwdHash, $city, $state, $zipcode);
                 UserDB::addUser($user);
             }
-            
-            $_SESSION['loginUser'] = $username;            
+
+            $_SESSION['loginUser'] = $username;
             include("./account/account_login.php");
             die();
         }
@@ -222,8 +230,21 @@ switch ($action) {
         include "./dashboard/mainPage.php";
         die();
         break;
-    
-    case "adminDash":           
+
+    case "adminDash":
+        include 'dashboard/dashboard_adminDash.php';
+        die();
+        break;
+
+    case "showUsers":
+        $users = userDB::selectAll();
+        include 'dashboard/dashboard_adminDashShowUsers.php';
+        die();
+        break;
+
+    case "deleteUser":
+        $userID = filter_input(INPUT_POST, 'userID');
+        userDB::deleteUser($userID);
         include 'dashboard/dashboard_adminDash.php';
         die();
         break;
