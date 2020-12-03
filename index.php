@@ -108,7 +108,7 @@ switch ($action) {
         if (!isset($yaxis)) {
             $yaxis = 'positive';
         }
-        if (!isset($state))
+        if (empty($state))
         {
             $state = 'us';
         }            

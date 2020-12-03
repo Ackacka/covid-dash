@@ -135,7 +135,7 @@
 
                             <div class="row justify-content-center ">
                                 <div class="col-sm mt-5">
-                                    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                                    <div id="chartContainer" style="height: 300px; width: 70%; margin: 0 auto;"></div>
                                 </div>
                             </div>
                         </div>
