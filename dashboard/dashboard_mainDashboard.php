@@ -70,9 +70,9 @@
                                 <div class="col-sm-12">
                                     <form class="form-inline" action="index.php" method="post" enctype="multipart/form-data">
                                         <input type='hidden' name='action' value='dashboard'>
-                                        <div class="form-group col-sm-6 pt-4" >
-                                            <label class="control-label col-sm-2 bystate"  for="state">Choose statistic to view:</label>
-                                            <div class="col-sm-4" >
+                                        <div class="form-group col-sm-8 col-md-5 pt-4" >
+                                            <label class="control-label col-sm-5 bystate"  for="state">Choose statistic to view:</label>
+                                            <div class="col-sm-3" >
 
                                                 <select name='yaxis' class="form-control">
 
@@ -96,9 +96,9 @@
 
                                             </div>
                                         </div>
-                                        <div class="form-group col-sm-6 pt-4" >
-                                            <label class="control-label col-sm-2 bystate"  for="state">By Location:</label>
-                                            <div class="col-sm-4" >
+                                        <div class="form-group col-sm-10 col-md-6 pt-4" >
+                                            <label class="control-label col-sm-3 bystate"  for="state">By Location:</label>
+                                            <div class="col-sm-5" >
 
                                                 <select name='states' class="form-control">
                                                     <?php
