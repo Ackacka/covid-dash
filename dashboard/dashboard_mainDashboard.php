@@ -102,24 +102,19 @@
 
                                                 <select name='states' class="form-control">
                                                     <?php
-                                                    // A sample product array
                                                     $states = array("US", "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA",
                                                         "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH",
                                                         "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT",
                                                         "VT", "VA", "WA", "WV", "WI", "WY");
 
-                                                    // Iterating through the product array
+                                                    $i = 0;
                                                     foreach ($states as $state) {
-                                                        $i = 0;
-
-                                                        foreach ($options as $option) {
-                                                            if ($i = 0) {
-                                                                echo "<option value='$state' selected>$state</option>";
-                                                            } else {
-                                                                echo "<option value='$state'>$state</option>";
-                                                            }
-                                                            $i++;
+                                                        if ($i = 0) {
+                                                            echo "<option value='$state' selected>$state</option>";
+                                                        } else {
+                                                            echo "<option value='$state'>$state</option>";
                                                         }
+                                                        $i++;
                                                     }
                                                     ?>
                                                 </select>
