@@ -65,7 +65,7 @@ switch ($action) {
             $user = UserDB::getUserByUsername($username);
             $_SESSION['roleType'] = $user['roleTypeID'];
 //            $dashInfo = covidApi::getCurrent();
-            $state = 'us';
+            $state = UserDB::getLocation($username);
             $yaxis = filter_input(INPUT_POST, 'yaxis');
             if ($yaxis !== null) {
                 $yaxis = filter_input(INPUT_POST, 'yaxis');
@@ -102,7 +102,9 @@ switch ($action) {
         include './account/account_login.php';
         die();
         break;
+        
     case "dashboard":
+        $username = $_SESSION['loginUser'];
         $state = strtolower(filter_input(INPUT_POST, 'states'));
         $yaxis = filter_input(INPUT_POST, 'yaxis');
         if (!isset($yaxis)) {
@@ -119,7 +121,6 @@ switch ($action) {
 //        $dashInfo = CovidApi::getCurrent();
         $chartData = CovidApi::getHistoricStateOrUS($state);
         $dataPoints = ChartData::getDataPoints($chartData, $yaxis);
-
         $chartTitle = ChartData::getChartTitle($state, $yaxis);
         include './dashboard/dashboard_mainDashboard.php';
         die();
@@ -252,6 +253,31 @@ switch ($action) {
         $userID = filter_input(INPUT_POST, 'userID');
         userDB::deleteUser($userID);
         include 'dashboard/dashboard_adminDash.php';
+        die();
+        break;
+    
+    case "setLocation":
+        $username = $_SESSION['loginUser'];
+        $state = strtolower(filter_input(INPUT_POST, 'states'));
+        userDB::updateLocation($state, $username);
+        $yaxis = filter_input(INPUT_POST, 'yaxis');
+        if (!isset($yaxis)) {
+            $yaxis = 'positive';
+        }
+        if (empty($state))
+        {
+            $state = 'us';
+        }            
+
+        if (!isset($stateError)) {
+            $stateError = '';
+        }
+        $chartData = CovidApi::getHistoricStateOrUS($state);
+        $dataPoints = ChartData::getDataPoints($chartData, $yaxis);
+
+        $chartTitle = ChartData::getChartTitle($state, $yaxis);
+        
+        include './dashboard/dashboard_mainDashboard.php';
         die();
         break;
 }
