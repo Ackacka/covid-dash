@@ -31,6 +31,7 @@ class ChartData {
     public static function getChartTitle($state, $yaxis) {
         $title = '';
         $firstHalfTitle = '';
+        $state = strtoupper($state);
         if ($yaxis === 'positive') {
             $title = 'COVID cases in ' . $state . ' over time';
         } else if ($yaxis === 'hospitalizedCurrently') {

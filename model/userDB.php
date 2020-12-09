@@ -119,5 +119,28 @@ class UserDB {
         $statement->execute();
         $statement->closeCursor();
     }
+    
+    public static function updateLocation($state, $username) {
+        $db = Database::getDB();
+        $query = 'UPDATE users SET state = :state WHERE username = :username';
+        $statement = $db->prepare($query);
+        $statement->bindValue(":state", $state);
+        $statement->bindValue(":username", $username);
+        $statement->execute();
+        $statement->closeCursor();
+    }
+    
+    public static function getLocation($username) {
+        $db = Database::getDB();
+        $query = 'SELECT state FROM users
+                  WHERE username = :username';
+        $statement = $db->prepare($query);
+        $statement->bindValue(":username", $username);
+        $statement->execute();
+        $state = $statement->fetch();
+        $statement->closeCursor();
+        
+        return $state;
+    }
 
 }
