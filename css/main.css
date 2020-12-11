@@ -15,6 +15,7 @@
     background-color: #272c33;
     margin-bottom: 0px;
 }
+.mynav {display: none;}
 .homewidgets {
         margin-top: 10em !important;
         margin-left: 20em;
@@ -251,6 +252,10 @@
   .caseschart {
       padding-top: 1rem;
   }
+  .newuseradmin{
+      padding-top: 7px;
+      margin-left: 60px;
+  }
   @media screen and (max-width:1500px) {
         .row.content {height: auto;}
         .mytitle .menu-icon{color: #8b939b;}
@@ -271,12 +276,15 @@
         .bottomjumbodiv {background-size: 110%; bottom: -5em; background-position: center center;}
         .homewidgets {margin-top: 15% !important; margin-left: 20%; margin-right: 2%;}
         .home-card{margin-bottom: 5px;}
+/*        .dropdown{display: none;}*/
   }
     @media screen and (max-width: 768px) and (min-width: 577px)  {
         .sidenav {height: auto;}
         .bottomjumbodiv {background-size: 150%; bottom: -5em; background-position: center center;}
         .homewidgets {margin-top: 20% !important; margin-left: 20% !important; margin-right: 2%;}
         .home-card{margin-bottom: 5px;}
+        .dropdown{display: none;}
+        .mynav{display: list-item !important; }
     }
       /* On small screens, set height to 'auto' for the grid */
     @media screen and (max-width: 576px) {
@@ -284,5 +292,7 @@
       .bottomjumbodiv {background-size: 150%; bottom: -5em; background-position: center center;}
       .homewidgets {margin-top: 20% !important; margin-left: 2%; margin-right: 2%;}
       .home-card{margin-bottom: 5px;}
+      .dropdown{display: none;}
+      .mynav{display: list-item !important; }
     }
     

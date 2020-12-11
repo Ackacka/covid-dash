@@ -81,10 +81,12 @@
                                 <span class="errorMsg error"> <?php echo htmlspecialchars($passwordError) ?></span>
                             </div>
                         </div>
+                        <?php if ($_SESSION['roleType'] == 2) { ?>
                         <div class="form-group useradmin">                                
                             <input  type="checkbox" id="admin" name="admin" value="admin" >                                
                             <label for="admin">Admin Account</label><br>
-                        </div>				
+                        </div>
+                        <?php } ?>
                         <div class="d-flex flex-row justify-content-between align-items-center">
                             <button type="submit" class="btn btn-success">Register</button>
                         </div>

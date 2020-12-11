@@ -39,8 +39,16 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="row">
+                        <div class="card-header col-lg-5">
                             <strong class="card-title">Stripped Table</strong>
+                            </div>
+                            <div class="col-lg-6 newuseradmin">
+                            <form method="POST" action="index.php?action=showAddUser" class="pagination justify-content-end">
+                                <button class= "btn newuseradmin btn-dark btn-sm" type="submit">New User/Admin</button>
+                            </form>
+                            </div>
+                        
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped">

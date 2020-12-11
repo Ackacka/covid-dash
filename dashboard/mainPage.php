@@ -8,7 +8,23 @@
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav mr-auto">
-
+        <?php if ($_SESSION["loginUser"] !== "defaultUser"){ ?>
+      <li class="mynav nav-item">
+        <a class="nav-link" href="index.php?action=dashboard">Dashboard</a>
+      </li>
+      <?php if ($_SESSION['roleType'] == 2) { ?>
+      <li class="mynav nav-item">
+        <a class="nav-link" href="index.php?action=adminDash">Admin</a>
+      </li>
+      <?php } ?>
+      <li class="mynav nav-item">
+        <a class="nav-link" href="index.php?action=logOut">Logout</a>
+      </li>
+      <?php } else { ?>
+      <li class="mynav nav-item">
+        <a class="nav-link" href="index.php?action=loginPage">Login</a>
+      </li>
+      <?php } ?>
     </ul>
       
     <li  class="form-inline my-2 my-lg-0 navbar-nav nav-item dropdown">
