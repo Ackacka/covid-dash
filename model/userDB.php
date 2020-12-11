@@ -140,7 +140,7 @@ class UserDB {
         $state = $statement->fetch();
         $statement->closeCursor();
         
-        return $state;
+        return $state[0];
     }
 
 }
